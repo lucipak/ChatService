@@ -65,9 +65,10 @@ const App = () => {
     socket.connect();
     socket.on('connection', () => socket.send('Hello from client!'));
     socket.on('greetings', greeting => console.log(greeting));
-    socket.on('newMessage', newMessage =>
-      setMessages([...messages, newMessage]),
-    );
+    socket.on('newMessage', newMessage => {
+      setMessages([...messages, newMessage]);
+      setText('');
+    });
 
     return () => {
       socket.disconnect();
